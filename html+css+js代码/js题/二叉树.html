@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二叉树</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+    function Node(val) {
+        this.val = val
+        this.left = null
+        this.right = null
+    }
+
+    function hasPathSum(root, sum) {
+        if (root === null) return false
+        if (root.left === null && root.right === null)
+            return !(sum - root.val)
+
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val)
+    }
+
+
+</script>

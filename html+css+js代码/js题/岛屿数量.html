@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>岛屿数量</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+
+    function dfs(arr, i, j, m, n) {
+        if (i < 0 || j < 0 || i >= m || j >= n || arr[i][j] === '0') {
+            return
+        }
+
+        arr[i][j] = '0'
+
+        dfs(arr, i - 1, j, m, n)
+        dfs(arr, i + 1, j, m, n)
+        dfs(arr, i, j - 1, m, n)
+        dfs(arr, i, j + 1, m, n)
+    }
+
+    function islands(arr) {
+        let count = 0
+        let m = arr.length
+        if (!m) return 0
+        let n = arr[0].length
+        for (let i = 0; i < m; i++) {
+            for (let j = 0; j < n; j++) {
+                if (arr[i][j] === '1') {
+                    dfs(arr, i, j, m, n)
+                    count++
+                }
+            }
+        }
+        return count
+    }
+
+    const grid = [
+        ["1","1","0","0","0"],
+        ["1","1","0","0","0"],
+        ["0","0","1","0","0"],
+        ["0","0","0","1","1"]
+    ]
+
+    console.log(islands(grid))
+</script>

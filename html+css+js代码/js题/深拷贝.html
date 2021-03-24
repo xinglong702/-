@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深拷贝</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+    function deepClone(target) {
+        let res
+        if (Object.prototype.toString.call(target) === '[object Object]') {
+            res = {}
+        } else if (Array.isArray(target)) {
+            res = []
+        } else {
+            return target
+        }
+
+        Object.keys(target).forEach(item => {
+            let value = target[item]
+            if (Object.prototype.toString.call(value) === '[object Object]' || Array.isArray(value)) {
+                res[item] = arguments.callee(value)
+            } else {
+                res[item] = value
+            }
+        })
+
+        return res
+    }
+
+    function deepClone2(target) {
+        let res
+        if (Object.prototype.toString.call(target) === '[object Object]') {
+            res = {}
+        } else if (Array.isArray(target)) {
+            res = []
+        } else {
+            return target
+        }
+
+        Object.keys(target).forEach(item => {
+            if (Object.prototype.toString.call(target[item]) === '[object Object]' || Array.isArray(target[item])) {
+                res[item] = deepClone(target[item])
+            } else {
+                res[item] = target[item]
+            }
+        })
+
+        return res
+    }
+
+    let obj = {
+        a: 1,
+        b: [1, 2, 3],
+        c: {
+            d: 4
+        }
+    }
+
+    let obj2 = deepClone2(obj)
+    console.log(obj2)
+    obj2.b[0] = 'ssp'
+    console.log(obj)
+</script>

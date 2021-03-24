@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<a href="test.html">wwwww</a>
+<a href="test.html">wwwww</a>
+<a href="test.html">wwwww</a>
+<a href="test.html">wwwww</a>
+</body>
+</html>
+
+<script>
+    // ;ab;;b;;;c; ---> ab;b;c
+    const str = ';ab;;b;;;c;'
+    const re = /[a-zA-Z]+/g
+    const arr = str.match(re)
+    console.log(arr.join(';'))
+
+</script>
